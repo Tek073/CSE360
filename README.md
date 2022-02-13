@@ -1,4 +1,5 @@
 # CSE360
 360 Project
-Brayden Wilby
+Ryan Pettinato <br/>
+Brayden Wilby <
 
