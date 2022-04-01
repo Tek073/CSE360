@@ -8,7 +8,7 @@ Erick Soto
 
 
 Stuff people are working on currently <br/>
-Ryan Pettinato: Nothing <br/>
+Ryan Pettinato: User Class Structure <br/>
 Brayden Wilby: Nothing <br/>
 Harsha Pratha: Nothing <br/>
 Adrian Szczurek: Nothing <br/>
