@@ -11,7 +11,7 @@ Stuff people are working on currently <br/>
 Ryan Pettinato: Classes: Item, CreditCard, Cart, Order, Coupon <br/>
 Brayden Wilby: Nothing <br/>
 Harsha Pratha: Nothing <br/>
-Adrian Szczurek: Nothing <br/>
+Adrian Szczurek: Classes: Employee <br/>
 Erick Soto: Nothing <br/>
  
 Partially Completed Files: <br/>
