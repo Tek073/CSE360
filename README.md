@@ -12,6 +12,6 @@ Ryan Pettinato: Classes: Item, CreditCard, Cart, Order, Coupon <br/>
 Brayden Wilby: Nothing <br/>
 Harsha Pratha: Nothing <br/>
 Adrian Szczurek: Classes: Employee, Customer<br/>
-Erick Soto: Nothing <br/>
+Erick Soto: Classes: Waitlist <br/>
  
 Partially Completed Files: <br/>
