@@ -59,5 +59,17 @@ public class Customer {
         return newList;
     }
 
-    
+    public boolean getOrderStatus () {
+        return this.orderMade;
+    }
+
+    public CreditCard getCreditCard() {
+        return this.cardOnFile;
+    }
+
+    public void setCreditCard (String name, int number, int date) {
+        this.cardOnFile.setName(name);
+        this.cardOnFile.setNumber(number);
+        this.cardOnFile.setDate(date);
+    }
 }
