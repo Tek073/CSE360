@@ -8,10 +8,11 @@ Erick Soto
 
 
 Stuff people are working on currently <br/>
-Ryan Pettinato: Classes: Item, CreditCard, Cart, Order, Coupon <br/>
+Ryan Pettinato: Nothing <br/>
 Brayden Wilby: Nothing <br/>
 Harsha Pratha: Nothing <br/>
 Adrian Szczurek: Classes: Employee, Customer<br/>
 Erick Soto: Classes: Waitlist <br/>
  
 Partially Completed Files: <br/>
+Classes: Item, CreditCard, Cart, Order, Coupon <br/>
