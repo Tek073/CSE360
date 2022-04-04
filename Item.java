@@ -13,7 +13,9 @@ public class Item
 	private String name;
 	private String description;
 	private int price;
+	private int prepTime;
 	private ArrayList<String> ingredients;
+	
 	
 	public Item()
 	{
@@ -59,6 +61,14 @@ public class Item
 	public void setPrice(int price) 
 	{
 		this.price = price;
+	}
+	public int getPrepTime() 
+	{
+		return prepTime;
+	}
+	public void setPrepTime(int prepTime) 
+	{
+		this.prepTime = prepTime;
 	}
 	public String getIngredients()
 	{
