@@ -12,7 +12,7 @@ Ryan Pettinato: Nothing <br/>
 Brayden Wilby: Nothing <br/>
 Harsha Pratha: Nothing <br/>
 Adrian Szczurek: Classes: Employee, Customer<br/>
-Erick Soto: Classes: Waitlist <br/>
+Erick Soto: Classes: Waitlist, Application <br/>
  
 Partially Completed Files: <br/>
 Classes: Item, CreditCard, Cart, Order, Coupon <br/>
