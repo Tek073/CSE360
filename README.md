@@ -10,7 +10,7 @@ Erick Soto
 Stuff people are working on currently <br/>
 Ryan Pettinato: Nothing <br/>
 Brayden Wilby: Nothing <br/>
-Harsha Pratha: Nothing <br/>
+Harsha Pratha: UI Screens (Swing) <br/>
 Adrian Szczurek: Classes: Employee, Customer<br/>
 Erick Soto: Classes: Waitlist, Application <br/>
  
