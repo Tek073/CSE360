@@ -108,7 +108,7 @@ public class SignupScreen extends Screen {
                 	boolean ifTrue = password.equals(confirmPassword);
                 	
                 	// if these two are equal then add user into application data base
-                	if(ifTrue);
+                	if(ifTrue)
                 	{
                 		Customer nextCustomer = new Customer("n/a", "n/a", username, password);
                 		App.info.theCustomer = nextCustomer;
