@@ -70,6 +70,7 @@ public class LoginScreen extends Screen {
         c.gridy = 2;
         form.add(login, c);
 
+        
         form.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0), BorderFactory.createRaisedBevelBorder()));
 
         JPanel actions = new JPanel(new BorderLayout());
@@ -93,7 +94,14 @@ public class LoginScreen extends Screen {
         login.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new MenuScreen());
+                	String username = usr.getText();
+                	String password = pwd.getText();
+                	
+                	if(App.info.checkUserPassCustomer(username, password))
+                	{
+                		App.showScreen(new MenuScreen());
+                	}
+                    
                 }
             }
         );

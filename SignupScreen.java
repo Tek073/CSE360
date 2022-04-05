@@ -97,7 +97,27 @@ public class SignupScreen extends Screen {
         signup.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new MenuScreen());
+                	
+                	String username = usr.getText();
+                	String password = pwd.getText();
+                	String confirmPassword = pwd2.getText();
+                	
+                	System.out.println(username);
+                	System.out.println(password);
+                	System.out.println(confirmPassword);
+                	boolean ifTrue = password.equals(confirmPassword);
+                	
+                	// if these two are equal then add user into application data base
+                	if(ifTrue);
+                	{
+                		Customer nextCustomer = new Customer("n/a", "n/a", username, password);
+                		App.info.theCustomer = nextCustomer;
+                		App.info.customers.add(nextCustomer);
+                		
+                		App.showScreen(new MenuScreen());
+                	}
+                	
+                    
                 }
             }
         );
