@@ -15,7 +15,7 @@ public class HomeScreen extends Screen  {
     public HomeScreen() {
         welcomeMsg = new JLabel(
             "<html>" +
-            "<p>&nbsp;</p><p>&nbsp;</p><p>Welcome to the Restaurant!</p><p>&nbsp;</p>" +
+            "<p>&nbsp;</p><p>&nbsp;</p><p>Welcome to " + Data.getData().getRestaurantName() + "!</p><p>&nbsp;</p>" +
             "</html>");
         custLogin = new JButton(
             "<html><center>" +

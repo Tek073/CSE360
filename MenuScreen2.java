@@ -1,29 +1,29 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-public class MenuScreen extends Screen {
+public class MenuScreen2 extends Screen {
 
     private JLabel message;
     private JButton cancel;
     private JButton checkout;
 
-    public MenuScreen() {
+    JSpinner qty[];
+
+    public MenuScreen2() {
         message = new JLabel(
             "<html>" +
             "<p>&nbsp;</p>" +
@@ -39,48 +39,36 @@ public class MenuScreen extends Screen {
             "<p><b><font size=+1>Checkout</font></b></p>" +
             "</center></html>");
 
-        // Define menu
-        int nitems = 4;
-        String[] descStrings = new String[] {"Salad", "Burger", "Soda", "Chips"};
-        String[] priceStrings = new String[] {"$5.50", "$8.50", "$0.99", "$1.99"};
-
-        // Create menu components (item descriptions, unit prices, and quantities)
-        JLabel[] descriptions = new JLabel[nitems];
-        JTextField[] prices = new JTextField[nitems];
-        JSpinner[] quantities = new JSpinner[nitems];
-        for (int i = 0; i < nitems; i++) {
-
-            descriptions[i] = new JLabel(descStrings[i]);
-            prices[i] = new JTextField(priceStrings[i]);
-            prices[i].setEditable(false);
-            prices[i].setBackground(Color.lightGray);
-            quantities[i] = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
-            JFormattedTextField tf = ((JSpinner.DefaultEditor) quantities[i].getEditor()).getTextField();
+        JPanel form = new JPanel();
+        qty = new JSpinner[Data.getData().getMenu().size()];
+        int i = 0;
+        form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
+        for (MenuItem mi : Data.getData().getMenu()) {
+            JPanel panel = new JPanel(new BorderLayout());
+            
+            panel.add(new JLabel(mi.getDesc()), BorderLayout.NORTH);
+            panel.add(new JLabel(mi.getIngradients()), BorderLayout.SOUTH);
+            panel.add(new JLabel("$" + mi.getPrice()), BorderLayout.WEST);
+            qty[i] = new JSpinner(new SpinnerNumberModel(0, 0, 10, 1));
+            JFormattedTextField tf = ((JSpinner.DefaultEditor) qty[i].getEditor()).getTextField();
             tf.setEditable(false);
             tf.setBackground(Color.lightGray);
+            panel.add(qty[i], BorderLayout.EAST);
+            ImageIcon imageIcon = new ImageIcon(new ImageIcon(mi.getImageFilename()).getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_DEFAULT));
+            panel.add(new JLabel(imageIcon));
+            panel.setBorder(
+                BorderFactory.createCompoundBorder(
+                    BorderFactory.createEmptyBorder(20, 30, 20, 30),
+                    BorderFactory.createCompoundBorder(
+                        BorderFactory.createRaisedBevelBorder(),
+                        BorderFactory.createEmptyBorder(10, 10, 10, 10)
+                    )
+                )
+            );
+
+            form.add(panel);
+            i++;
         }
-
-        // Add menu items
-        JPanel form = new JPanel();
-        form.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.insets = new Insets(10, 5, 10, 5);
-
-        for (int i = 0; i < nitems; i++) {
-            c.gridy = i;
-
-            c.gridx = 0;
-            form.add(descriptions[i], c);
-
-            c.gridx = 1;
-            form.add(prices[i], c);
-
-            c.gridx = 2;
-            form.add(quantities[i], c);
-        }
-
-        // form.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0), BorderFactory.createRaisedBevelBorder()));
 
         JPanel actions = new JPanel(new BorderLayout());
         actions.add(cancel, BorderLayout.WEST);

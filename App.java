@@ -7,7 +7,7 @@ public class App {
 
     private static JFrame jf;
     public static void main(String[] args) throws Exception {
-        jf = new JFrame("Restaurant Kiosk");
+        jf = new JFrame(Data.getData().getRestaurantName() + " Kiosk");
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setSize(700, 400);
         jf.setLocationRelativeTo(null);

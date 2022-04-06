@@ -82,7 +82,7 @@ public class OrderScreen extends Screen {
             form.add(quantities[i], c);
         }
 
-        form.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0), BorderFactory.createRaisedBevelBorder()));
+        // form.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0), BorderFactory.createRaisedBevelBorder()));
 
         JPanel actions = new JPanel(new BorderLayout());
         actions.add(back, BorderLayout.WEST);
@@ -92,13 +92,14 @@ public class OrderScreen extends Screen {
         message.setHorizontalAlignment(SwingConstants.CENTER);
         JScrollPane jsp = new JScrollPane(form);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        jsp.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0), BorderFactory.createRaisedBevelBorder()));
         add(jsp, BorderLayout.CENTER);
         add(actions, BorderLayout.PAGE_END);
 
         back.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new MenuScreen());
+                    App.showScreen(new MenuScreen2());
                 }
             }
         );

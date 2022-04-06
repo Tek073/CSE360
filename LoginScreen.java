@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -93,7 +94,13 @@ public class LoginScreen extends Screen {
         login.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new MenuScreen());
+                    String u = usr.getText().trim();
+                    String p = new String(pwd.getPassword()).trim();
+                    if (Data.getData().loginCustomer(u, p) == null) {
+                        JOptionPane.showMessageDialog(LoginScreen.this, new String[] {"Invalid Username/Password", "Don't have an accout? Please signup!"}, "Sun Devil: Failed to login", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    App.showScreen(new MenuScreen2());
                 }
             }
         );
