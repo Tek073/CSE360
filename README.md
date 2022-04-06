@@ -4,7 +4,7 @@ Ryan Pettinato <br/>
 Brayden Wilby <br/>
 Harsha Pratha <br/>
 Adrian Szczurek <br/>
-Erick Soto 
+Erick Soto <br/>
 
 
 Stuff people are working on currently <br/>
@@ -15,4 +15,7 @@ Adrian Szczurek: Classes: Employee, Customer<br/>
 Erick Soto: Classes: Waitlist, Application <br/>
  
 Partially Completed Files: <br/>
-Classes: Item, CreditCard, Cart, Order, Coupon <br/>
+None
+
+Completed Files:
+ALL!!!
