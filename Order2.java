@@ -29,7 +29,7 @@ public class Order2 {
     public double getTotal() {
         double total = 0;
         for (CartItem c : items) {
-            total += ( c.getQuanity() * c.getPrice() ) ;
+            total += ( c.getQuantity() * c.getPrice() ) ;
         }
         return total;
     }
@@ -41,7 +41,7 @@ public class Order2 {
     public int getTotalPrepTime() {
         int total = 0;
         for (CartItem c : items) {
-            total += ( c.getQuanity() * c.getPrepTime() ) ;
+            total += ( c.getQuantity() * c.getPrepTime() ) ;
         }
         return total;
     }

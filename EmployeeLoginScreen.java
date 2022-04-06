@@ -15,21 +15,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
-public class LoginScreen extends Screen {
+public class EmployeeLoginScreen extends Screen {
 
     private JLabel message;
     private JTextField usr;
     private JPasswordField pwd;
     private JButton cancel;
     private JButton login;
-    private JButton signup;
 
-    public LoginScreen() {
+    public EmployeeLoginScreen() {
         message = new JLabel(
             "<html>" +
             "<p>&nbsp;</p>" +
-            "<p><b><font size=+3>Login Screen</font></b></p>" +
-            "<p>Please login or click signup to create an account!</p><p>&nbsp;</p>" +
+            "<p><b><font size=+3>Employee Login Screen</font></b></p>" +
+            "<p>Please login to manage the menu and orders!</p><p>&nbsp;</p>" +
             "</html>");
         cancel = new JButton(
             "<html><center>" +
@@ -38,10 +37,6 @@ public class LoginScreen extends Screen {
         login = new JButton(
             "<html><center>" +
             "<p><b><font size=+1>Login</font></b></p>" +
-            "</center></html>");
-        signup = new JButton(
-            "<html><center>" +
-            "<p><b><font size=+1>Signup</font></b></p>" +
             "</center></html>");
 
         JLabel usrLabel = new JLabel("Username:");
@@ -76,8 +71,6 @@ public class LoginScreen extends Screen {
 
         JPanel actions = new JPanel(new BorderLayout());
         actions.add(cancel, BorderLayout.WEST);
-        // actions.add(login, BorderLayout.NORTH);
-        actions.add(signup, BorderLayout.EAST);
 
         add(message, BorderLayout.PAGE_START);
         message.setHorizontalAlignment(SwingConstants.CENTER);
@@ -104,19 +97,11 @@ public class LoginScreen extends Screen {
                 public void actionPerformed(ActionEvent e) {
                     String u = usr.getText().trim();
                     String p = new String(pwd.getPassword()).trim();
-                    if (Data.getData().loginCustomer(u, p) == null) {
-                        JOptionPane.showMessageDialog(LoginScreen.this, new String[] {"Invalid Username/Password", "Don't have an accout? Please signup!"}, "Sun Devil: Failed to login", JOptionPane.ERROR_MESSAGE);
+                    if (Data.getData().loginEmployee(u, p) == null) {
+                        JOptionPane.showMessageDialog(EmployeeLoginScreen.this, new String[] {"Invalid Username/Password", "Don't have an accout? Please contact the store manager!"}, "Sun Devil: Failed to login", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
-                    App.showScreen(new MenuScreen2());
-                }
-            }
-        );
-
-        signup.addActionListener(
-            new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new SignupScreen());
+                    App.showScreen(new EmployeeScreen());
                 }
             }
         );

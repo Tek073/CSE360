@@ -1,9 +1,9 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -19,10 +19,12 @@ public class PaymentScreen extends Screen {
     private JButton back;
     private JButton submit;
 
-    private JTextField amount;
+    private JLabel amountValueLabel;
     private JTextField number;
     private JTextField expDate;
     private JTextField zipCode;
+
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
     public PaymentScreen() {
         message = new JLabel(
@@ -41,9 +43,8 @@ public class PaymentScreen extends Screen {
             "</center></html>");
 
         JLabel amountLabel = new JLabel("Order Total:");
-        amount = new JTextField("$15.90");
-        amount.setEditable(false);
-        amount.setBackground(Color.lightGray);
+        amountValueLabel = new JLabel(currencyFormat.format(Data.getData().getCurrentUser().getCart().getTotal()));
+        
         JLabel numberLabel = new JLabel("Credit/Debit Card Number:");
         number = new JTextField(16);
         JLabel expDateLabel = new JLabel("Expiration date (mm/yy):");
@@ -62,7 +63,7 @@ public class PaymentScreen extends Screen {
         form.add(amountLabel, c);
         c.gridx = 1;
         c.gridy = 0;
-        form.add(amount, c);
+        form.add(amountValueLabel, c);
         c.gridx = 0;
         c.gridy = 1;
         form.add(numberLabel, c);
@@ -104,7 +105,14 @@ public class PaymentScreen extends Screen {
         submit.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new ConfirmationScreen());
+                    Order2 order = Data.getData().placeOrder(
+                        Data.getData().getCurrentUser().getUsername(),
+                        new CreditCard2(number.getText(), expDate.getText(), zipCode.getText()),
+                        null, // no coupon
+                        Data.getData().getCurrentUser().getCart()
+                    );
+                    Data.getData().getCurrentUser().getCart().clear();
+                    App.showScreen(new ConfirmationScreen(order));
                 }
             }
         );

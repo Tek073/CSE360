@@ -23,6 +23,14 @@ public class User {
         return password.equals(pwd);
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void changePassword(String pwd) {
+        password = pwd;
+    }
+
     public String getRole() {
         return role;
     }

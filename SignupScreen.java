@@ -97,25 +97,24 @@ public class SignupScreen extends Screen {
         signup.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                	
-                	String username = usr.getText();
-                	String password = pwd.getText();
-                	String confirmPassword = pwd2.getText();
-                	
-                	
-                	boolean ifTrue = password.equals(confirmPassword);
-                	
-                	// if these two are equal then add user into application data base
-                	if(ifTrue)
-                	{
-                		Customer nextCustomer = new Customer(username, password);
-                		App.info.theCustomer = nextCustomer;
-                		App.info.customers.add(nextCustomer);
-                		
-                		App.showScreen(new MenuScreen());
-                	}
-                	
-                    
+                    String u = usr.getText().trim();
+                    String p = new String(pwd.getPassword());
+                    String p2 = new String(pwd2.getPassword());
+                    String msg = "";
+                    if (u.length() < 3) {
+                        msg = "Username must be at least three characters long";
+                    } else if (p.length() < 3) {
+                        msg = "Password must be at least three characters long";
+                    } else if (! p.equals(p2)) {
+                        msg = "Password and Confirm Password must match exactly";
+                    } else if (! Data.getData().addUser(u, p, "Customer")) {
+                        msg = "Sorry, this username is already taken by another user";
+                    }
+                    if (! msg.isEmpty()) {
+                        JOptionPane.showMessageDialog(SignupScreen.this, msg, "Sun Devil: Failed to create account", JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                    App.showScreen(new MenuScreen2());
                 }
             }
         );

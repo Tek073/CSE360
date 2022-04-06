@@ -7,10 +7,11 @@ public class Cart2 {
     public void add(MenuItem item, int quantity) {
         for (CartItem c : items) {
             if (c.getDesc().equals(item.getDesc())) {
-                c.setQuantity(quantity + c.getQuanity());
-                break;
+                c.setQuantity(quantity + c.getQuantity());
+                return;
             }
         }
+        items.add(new CartItem(item, quantity));
     }
 
     public boolean remove(MenuItem item) {
@@ -31,13 +32,17 @@ public class Cart2 {
     public double getTotal() {
         double total = 0;
         for (CartItem c : items) {
-            total += ( c.getQuanity() * c.getPrice() ) ;
+            total += ( c.getQuantity() * c.getPrice() ) ;
         }
         return total;
     }
 
     public int getItemCount() {
-        return items.size();
+        int total = 0;
+        for (CartItem c : items) {
+            total += c.getQuantity() ;
+        }
+        return total;
     }
 
     public void clear() {

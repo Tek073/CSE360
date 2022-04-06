@@ -21,7 +21,7 @@ public class ConfirmationScreen extends Screen {
     private JTextField couponCode;
     private JButton ok;
 
-    public ConfirmationScreen() {
+    public ConfirmationScreen(Order2 order) {
         message = new JLabel(
             "<html>" +
             "<p>&nbsp;</p>" +
@@ -34,11 +34,14 @@ public class ConfirmationScreen extends Screen {
             "</center></html>");
 
         JLabel orderNumLabel = new JLabel("Order Number:");
-        orderNum = new JTextField("123-456");
+        orderNum = new JTextField("" + order.getNumber());
         orderNum.setEditable(false);
         orderNum.setBackground(Color.lightGray);
         JLabel waitLabel = new JLabel("Your expected wait time:");
-        waitTime = new JTextField("0h 35m");
+        int wait_minutes = Data.getData().getWaitTime(order);
+        int wait_hours = wait_minutes / 60;
+        wait_minutes = wait_minutes % 60;
+        waitTime = new JTextField("" + wait_hours + "h " + wait_minutes + "m");
         waitTime.setEditable(false);
         waitTime.setBackground(Color.lightGray);
         JLabel couponLabel = new JLabel("Your 20% off coupon code:");
@@ -85,7 +88,7 @@ public class ConfirmationScreen extends Screen {
         ok.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    App.showScreen(new HomeScreen());
+                    App.showScreen(new CustomerScreen());
                 }
             }
         );

@@ -114,7 +114,16 @@ public class Data {
     public ArrayList<Order2> getOrders() {
         return orders;
     }
-    public void placeOrder(String username, CreditCard2 card, Coupon2 coupon, Cart2 cart) {
+    public ArrayList<Order2> getOrders(String username) {
+        ArrayList<Order2> ret = new ArrayList<Order2>();
+        for (Order2 order : orders) {
+            if (order.getUsername().equals(username)) {
+                ret.add(order);
+            }
+        }
+        return ret;
+    }
+    public Order2 placeOrder(String username, CreditCard2 card, Coupon2 coupon, Cart2 cart) {
         // Find the next order number
         int num = 100;
         for (Order2 o : orders) {
@@ -125,6 +134,7 @@ public class Data {
         num += 10;
         Order2 order = new Order2(username, card, coupon, cart, num);
         orders.add(order);
+        return order;
     }
     public int numberOfOrdersBefore(Order2 order) {
         int count = 0;

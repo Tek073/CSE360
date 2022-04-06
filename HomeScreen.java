@@ -37,5 +37,13 @@ public class HomeScreen extends Screen  {
                 }
             }
         );
+
+        empLogin.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    App.showScreen(new EmployeeLoginScreen());
+                }
+            }
+        );
     }
 }

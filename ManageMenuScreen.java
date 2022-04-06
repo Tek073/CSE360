@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 import javax.swing.BorderFactory;
@@ -11,37 +10,36 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-public class MenuScreen2 extends Screen {
+public class ManageMenuScreen extends Screen {
 
     private JLabel message;
-    private JButton cancel;
-    private JButton checkout;
+    private JButton back;
+    private JButton addItem;
 
     private JSpinner qty[];
 
     NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
 
-    public MenuScreen2() {
+    public ManageMenuScreen() {
         message = new JLabel(
             "<html>" +
             "<p>&nbsp;</p>" +
-            "<p><b><font size=+3>Restaurant Menu</font></b></p>" +
-            "<p>Please add items to your order!</p><p>&nbsp;</p>" +
+            "<p><b><font size=+3>Manage Menu</font></b></p>" +
+            "<p>Please delete menu items or add new ones!</p><p>&nbsp;</p>" +
             "</html>");
-        cancel = new JButton(
+        back = new JButton(
             "<html><center>" +
-            "<p><b><font size=+1>Cancel</font></b></p>" +
+            "<p><b><font size=+1>Back</font></b></p>" +
             "</center></html>");
-        checkout = new JButton(
+        addItem = new JButton(
             "<html><center>" +
-            "<p><b><font size=+1>Checkout</font></b></p>" +
+            "<p><b><font size=+1>Add New Item</font></b></p>" +
             "</center></html>");
 
         JPanel form = new JPanel();
@@ -58,7 +56,18 @@ public class MenuScreen2 extends Screen {
             JFormattedTextField tf = ((JSpinner.DefaultEditor) qty[i].getEditor()).getTextField();
             tf.setEditable(false);
             tf.setBackground(Color.lightGray);
-            panel.add(qty[i], BorderLayout.EAST);
+            // panel.add(qty[i], BorderLayout.EAST);
+            
+            JButton delete = new JButton("Delete");
+            delete.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Data.getData().getMenu().remove(mi);
+                        App.showScreen(new ManageMenuScreen());
+                    }
+                }
+            );
+            panel.add(delete, BorderLayout.EAST);
             ImageIcon imageIcon = new ImageIcon(new ImageIcon(mi.getImageFilename()).getImage().getScaledInstance(75, 75, java.awt.Image.SCALE_DEFAULT));
             panel.add(new JLabel(imageIcon));
             panel.setBorder(
@@ -76,8 +85,8 @@ public class MenuScreen2 extends Screen {
         }
 
         JPanel actions = new JPanel(new BorderLayout());
-        actions.add(cancel, BorderLayout.WEST);
-        actions.add(checkout, BorderLayout.EAST);
+        actions.add(back, BorderLayout.WEST);
+        actions.add(addItem, BorderLayout.EAST);
 
         add(message, BorderLayout.PAGE_START);
         message.setHorizontalAlignment(SwingConstants.CENTER);
@@ -87,31 +96,19 @@ public class MenuScreen2 extends Screen {
         add(jsp, BorderLayout.CENTER);
         add(actions, BorderLayout.PAGE_END);
 
-        cancel.addActionListener(
+        back.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Data.getData().getCurrentUser().getCart().clear();
-                    App.showScreen(new CustomerScreen());
+                    App.showScreen(new EmployeeScreen());
                 }
             }
         );
 
-        checkout.addActionListener(
+        addItem.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    Cart2 cart = Data.getData().getCurrentUser().getCart();
-                    ArrayList<MenuItem> menu = Data.getData().getMenu();
-                    for (int i = 0; i < qty.length; i++) {
-                        int q = (Integer) qty[i].getValue();
-                        if (q > 0) {
-                            cart.add(menu.get(i), q);
-                        }
-                    }
-                    if (cart.getItemCount() == 0) {
-                        JOptionPane.showMessageDialog(MenuScreen2.this, "Shopping cart is empy, please select items to purchase!", "Sun Devil: Empty order", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                    App.showScreen(new OrderScreen());
+                    
                 }
             }
         );

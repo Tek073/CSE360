@@ -6,11 +6,14 @@ public class CartItem extends MenuItem {
         this.quantity = quantity;
     }
 
-    public int getQuanity() {
+    public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        if (this.quantity > 10) {
+            this.quantity = 10;
+        }
     }
 }
