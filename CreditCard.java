@@ -10,7 +10,16 @@ public class CreditCard
 	
 	private String name;
 	private int number;
+	private int date;
 	
+	protected int getDate() 
+	{
+		return date;
+	}
+	protected void setDate(int date) 
+	{
+		this.date = date;
+	}
 	public CreditCard()
 	{
 		this.name = null;

@@ -94,13 +94,17 @@ public class LoginScreen extends Screen {
         login.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    String u = usr.getText().trim();
-                    String p = new String(pwd.getPassword()).trim();
-                    if (Data.getData().loginCustomer(u, p) == null) {
-                        JOptionPane.showMessageDialog(LoginScreen.this, new String[] {"Invalid Username/Password", "Don't have an accout? Please signup!"}, "Sun Devil: Failed to login", JOptionPane.ERROR_MESSAGE);
-                        return;
+
+                	String username = usr.getText();
+                	String password = pwd.getText();
+                	
+                	if(App.info.checkUserPassCustomer(username, password)) {
+                        App.showScreen(new MenuScreen2());
                     }
-                    App.showScreen(new MenuScreen2());
+                	else {
+                		JOptionPane.showMessageDialog(LoginScreen.this, new String[] {"Invalid Username/Password", "Don't have an accout? Please signup!"}, "Sun Devil: Failed to login", JOptionPane.ERROR_MESSAGE);
+                	}
+                    
                 }
             }
         );
